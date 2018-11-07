@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="FXTicTacToe">
+    <output-path>$PROJECT_DIR$/out/artifacts/FXTicTacToe</output-path>
+    <root id="archive" name="FXTicTacToe.jar">
+      <element id="module-output" name="FXTicTacToe" />
+    </root>
+  </artifact>
+</component>

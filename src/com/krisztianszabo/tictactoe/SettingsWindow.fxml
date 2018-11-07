@@ -1,0 +1,24 @@
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+
+<GridPane xmlns:fx="http://javafx.com/fxml"
+          fx:controller="com.krisztianszabo.tictactoe.SettingsWindowController">
+    <children>
+        <Label text="First player's name" alignment="CENTER_RIGHT"
+               GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <Label text="Second player's name" alignment="CENTER_RIGHT"
+               GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField text="" alignment="CENTER_LEFT" id="p1name" fx:id="p1name"
+                   GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+        <TextField text="" alignment="CENTER_LEFT" id="p2name" fx:id="p2name"
+                   GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+        <Button text="Cancel" alignment="CENTER" fx:id="buttonCancel"
+                onAction="#cancelAndClose"
+                GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <Button text="Save &amp; Close" alignment="CENTER" fx:id="buttonSave"
+                onAction="#saveAndClose"
+                GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+    </children>
+</GridPane>

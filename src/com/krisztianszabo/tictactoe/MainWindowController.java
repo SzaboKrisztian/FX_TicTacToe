@@ -1,5 +1,6 @@
 package com.krisztianszabo.tictactoe;
 
+import com.krisztianszabo.tictactoe.Board.GameState;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -42,19 +43,22 @@ public class MainWindowController implements Initializable {
 
           @Override
           public void handle(MouseEvent event) {
-            if (model.getGameState() == 0) {
+            // We only handle mouse input if the game is ongoing
+            if (model.getGameState() == GameState.ONGOING) {
               // The XOGame.makeMove(int) method returns false if the attempted move was
               // in any way illegal and could not be, thus, performed. Hence, the board
-              // didn't change.
+              // didn't change, and there's no need to take any actions.
               if (model.makeMove(cell)) {
                 // But if he move was indeed performed, we should first change the ImagesViews to
                 // the appropriate images, to reflect the change in the game model, and then check
                 // if the game state changed, and display the appropriate alert if it so did.
                 updateInterface();
-                if (model.getGameState() != 0) {
-                  if (model.getGameState() != 3) {
+                if (model.getGameState() != GameState.ONGOING) {
+                  if (model.getGameState() != GameState.TIE) {
+                    System.out.println(model.getGameState());
+                    int winner = model.getGameState() == GameState.P1WON ? 1 : 2;
                     PlayerManager.getInstance()
-                        .getPlayer(model.getGameState()).increaseScore();
+                        .getPlayer(winner).increaseScore();
                   }
                   updateInterface();
                   showGameOverAlert();
@@ -85,15 +89,15 @@ public class MainWindowController implements Initializable {
     alert.setTitle("Game over!");
     alert.setHeaderText(null);
     switch (model.getGameState()) {
-      case 3:
+      case TIE:
         alert.setContentText("It's a tie!");
         break;
-      case 1:
+      case P1WON:
         alert.setContentText("Congratulations, " +
             PlayerManager.getInstance().getPlayer(1).getName() +
             ", you win!");
         break;
-      case 2:
+      case P2WON:
         alert.setContentText("Congratulations, " +
             PlayerManager.getInstance().getPlayer(2).getName() +
             ", you win!");
@@ -114,7 +118,10 @@ public class MainWindowController implements Initializable {
     Parent root = loader.load();
 
     stage.setTitle("Game Settings");
-    stage.setScene(new Scene(root, 300, 325));
+    Scene scene = new Scene(root, 300, 120);
+    scene.getStylesheets().add(getClass().getResource("SettingsWindow.css").toExternalForm());
+    stage.setScene(scene);
+    stage.getIcons().add(new Image("com/krisztianszabo/tictactoe/resources/icon.png"));
     stage.setResizable(false);
 
     stage.setOnHiding(windowEvent -> updateInterface());
@@ -162,7 +169,7 @@ public class MainWindowController implements Initializable {
         PlayerManager.getInstance().getPlayer(1).getScore() + "     " +
         PlayerManager.getInstance().getPlayer(2).getName() + ": " +
         PlayerManager.getInstance().getPlayer(2).getScore();
-    if (model.getGameState() == 0) {
+    if (model.getGameState() == GameState.ONGOING) {
       if (model.getCurrentPlayer() == 1) {
         text = "->  " + text;
       } else {

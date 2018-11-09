@@ -37,7 +37,7 @@ public class XOGame {
     }
   }
 
-  public int getGameState() {
+  public Board.GameState getGameState() {
     return moveHistory.peek().getGameState();
   }
 

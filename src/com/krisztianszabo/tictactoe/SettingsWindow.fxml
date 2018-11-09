@@ -2,13 +2,14 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Button?>
-
+<?import javafx.scene.layout.ColumnConstraints?>
 <GridPane xmlns:fx="http://javafx.com/fxml"
-          fx:controller="com.krisztianszabo.tictactoe.SettingsWindowController">
+          fx:controller="com.krisztianszabo.tictactoe.SettingsWindowController"
+          fx:id="mainPane" hgap="10" vgap="10">
     <children>
-        <Label text="First player's name" alignment="CENTER_RIGHT"
+        <Label text="First player's name:" alignment="CENTER_RIGHT"
                GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-        <Label text="Second player's name" alignment="CENTER_RIGHT"
+        <Label text="Second player's name:" alignment="CENTER_RIGHT"
                GridPane.rowIndex="1" GridPane.columnIndex="0"/>
         <TextField text="" alignment="CENTER_LEFT" id="p1name" fx:id="p1name"
                    GridPane.rowIndex="0" GridPane.columnIndex="1"/>
@@ -21,4 +22,8 @@
                 onAction="#saveAndClose"
                 GridPane.rowIndex="2" GridPane.columnIndex="1"/>
     </children>
+    <columnConstraints>
+        <ColumnConstraints hgrow="ALWAYS" halignment="RIGHT"/>
+        <ColumnConstraints hgrow="ALWAYS" halignment="LEFT"/>
+    </columnConstraints>
 </GridPane>

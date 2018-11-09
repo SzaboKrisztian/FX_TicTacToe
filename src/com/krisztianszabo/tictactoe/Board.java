@@ -5,7 +5,14 @@ import java.lang.Math;
 public class Board {
   private int[] cells;
   private int currentPlayer;
-  private int gameState;
+  private GameState gameState;
+
+  public enum GameState {
+    ONGOING,
+    P1WON,
+    P2WON,
+    TIE
+  }
 
   public Board() {
     this(((int) Math.random() * 2) + 1);
@@ -13,11 +20,11 @@ public class Board {
 
   public Board(int currentPlayer) {
     cells = new int[9]; // This also initializes cells to 0;
-    gameState = 0;
+    gameState = GameState.ONGOING;
     this.currentPlayer = currentPlayer;
   }
 
-  public int getGameState() {
+  public GameState getGameState() {
     return this.gameState;
   }
 
@@ -69,7 +76,7 @@ public class Board {
     return this.currentPlayer;
   }
 
-  public static int checkWinCondition(Board board) {
+  public static GameState checkWinCondition(Board board) {
 
     char[] boardArr = board.getBoardState().toCharArray();
 
@@ -77,27 +84,27 @@ public class Board {
         ((boardArr[0] == boardArr[1] && boardArr[0] == boardArr[2])
             || (boardArr[0] == boardArr[3] && boardArr[0] == boardArr[6])
             || (boardArr[0] == boardArr[4] && boardArr[0] == boardArr[8]))) {
-      return Character.getNumericValue(boardArr[0]);
+      return (Character.getNumericValue(boardArr[0]) == 1) ? GameState.P1WON : GameState.P2WON;
     } else if (boardArr[1] != '0' &&
         (boardArr[1] == boardArr[4] && boardArr[1] == boardArr[7])) {
-      return Character.getNumericValue(boardArr[1]);
+      return (Character.getNumericValue(boardArr[1]) == 1) ? GameState.P1WON : GameState.P2WON;
     } else if (boardArr[2] != '0' &&
         ((boardArr[2] == boardArr[5] && boardArr[2] == boardArr[8])
             || (boardArr[2] == boardArr[4] && boardArr[2] == boardArr[6]))) {
-      return Character.getNumericValue(boardArr[2]);
+      return (Character.getNumericValue(boardArr[2]) == 1) ? GameState.P1WON : GameState.P2WON;
     } else if (boardArr[3] != '0' &&
         (boardArr[3] == boardArr[4] && boardArr[3] == boardArr[5])) {
-      return Character.getNumericValue(boardArr[3]);
+      return (Character.getNumericValue(boardArr[3]) == 1) ? GameState.P1WON : GameState.P2WON;
     } else if (boardArr[6] != '0' &&
         (boardArr[6] == boardArr[7] && boardArr[6] == boardArr[8])) {
-      return Character.getNumericValue(boardArr[6]);
+      return (Character.getNumericValue(boardArr[6]) == 1) ? GameState.P1WON : GameState.P2WON;
     } else {
       for (char cell: boardArr) {
         if (cell == '0') {
-          return 0;
+          return GameState.ONGOING;
         }
       }
-      return 3;
+      return GameState.TIE;
     }
   }
 }

@@ -1,0 +1,5 @@
+#gameGrid {
+    -fx-background-color: #000000;
+    -fx-background-image: url("Resources/background.png");
+    -fx-background-size: cover;
+}

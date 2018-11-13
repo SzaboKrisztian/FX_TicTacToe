@@ -6,12 +6,25 @@ public class Board {
   private int[] cells;
   private int currentPlayer;
   private GameState gameState;
+  private WinPattern winningPattern;
 
   public enum GameState {
     ONGOING,
     P1WON,
     P2WON,
     TIE
+  }
+
+  public enum WinPattern {
+    NONE,
+    COL_ONE,
+    COL_TWO,
+    COL_THREE,
+    ROW_ONE,
+    ROW_TWO,
+    ROW_THREE,
+    DIAG_ONE,
+    DIAG_TWO
   }
 
   public Board() {
@@ -22,11 +35,14 @@ public class Board {
     cells = new int[9]; // This also initializes cells to 0;
     gameState = GameState.ONGOING;
     this.currentPlayer = currentPlayer;
+    this.winningPattern = WinPattern.NONE;
   }
 
   public GameState getGameState() {
     return this.gameState;
   }
+
+  public WinPattern getWinningPattern() { return this.winningPattern; }
 
   public boolean isValidMove(int move) {
     boolean answer = false;
@@ -45,7 +61,7 @@ public class Board {
       result = this.clone();
       result.cells[move - 1] = currentPlayer;
       result.switchPlayer();
-      result.gameState = Board.checkWinCondition(result);
+      result.checkWinCondition();
     }
     return result;
   }
@@ -59,6 +75,7 @@ public class Board {
     result.currentPlayer = this.currentPlayer;
     result.cells = this.cells.clone();
     result.gameState = this.gameState;
+    result.winningPattern = this.winningPattern;
     return result;
   }
 
@@ -76,35 +93,50 @@ public class Board {
     return this.currentPlayer;
   }
 
-  public static GameState checkWinCondition(Board board) {
+  public void checkWinCondition() {
 
-    char[] boardArr = board.getBoardState().toCharArray();
-
-    if (boardArr[0] != '0' &&
-        ((boardArr[0] == boardArr[1] && boardArr[0] == boardArr[2])
-            || (boardArr[0] == boardArr[3] && boardArr[0] == boardArr[6])
-            || (boardArr[0] == boardArr[4] && boardArr[0] == boardArr[8]))) {
-      return (Character.getNumericValue(boardArr[0]) == 1) ? GameState.P1WON : GameState.P2WON;
-    } else if (boardArr[1] != '0' &&
-        (boardArr[1] == boardArr[4] && boardArr[1] == boardArr[7])) {
-      return (Character.getNumericValue(boardArr[1]) == 1) ? GameState.P1WON : GameState.P2WON;
-    } else if (boardArr[2] != '0' &&
-        ((boardArr[2] == boardArr[5] && boardArr[2] == boardArr[8])
-            || (boardArr[2] == boardArr[4] && boardArr[2] == boardArr[6]))) {
-      return (Character.getNumericValue(boardArr[2]) == 1) ? GameState.P1WON : GameState.P2WON;
-    } else if (boardArr[3] != '0' &&
-        (boardArr[3] == boardArr[4] && boardArr[3] == boardArr[5])) {
-      return (Character.getNumericValue(boardArr[3]) == 1) ? GameState.P1WON : GameState.P2WON;
-    } else if (boardArr[6] != '0' &&
-        (boardArr[6] == boardArr[7] && boardArr[6] == boardArr[8])) {
-      return (Character.getNumericValue(boardArr[6]) == 1) ? GameState.P1WON : GameState.P2WON;
+    if (cells[0] != 0) {
+      if (cells[0] == cells[1] && cells[0] == cells[2]) {
+        gameState = (Character.getNumericValue(cells[0]) == 1) ? GameState.P1WON : GameState.P2WON;
+        winningPattern = WinPattern.ROW_ONE;
+      } else if (cells[0] == cells[3] && cells[0] == cells[6]) {
+        gameState = (Character.getNumericValue(cells[0]) == 1) ? GameState.P1WON : GameState.P2WON;
+        winningPattern = WinPattern.COL_ONE;
+      } else if (cells[0] == cells[4] && cells[0] == cells[8]) {
+        gameState = (Character.getNumericValue(cells[0]) == 1) ? GameState.P1WON : GameState.P2WON;
+        winningPattern = WinPattern.DIAG_ONE;
+      }
+    } else if (cells[1] != 0) {
+      if (cells[1] == cells[4] && cells[1] == cells[7]) {
+        gameState = (Character.getNumericValue(cells[1]) == 1) ? GameState.P1WON : GameState.P2WON;
+        winningPattern = WinPattern.COL_TWO;
+      }
+    } else if (cells[2] != 0) {
+      if (cells[2] == cells[5] && cells[2] == cells[8]) {
+        gameState = (Character.getNumericValue(cells[2]) == 1) ? GameState.P1WON : GameState.P2WON;
+        winningPattern = WinPattern.COL_THREE;
+      }
+    } else if (cells[3] != 0) {
+      if (cells[3] == cells[4] && cells[3] == cells[5]) {
+        gameState = (Character.getNumericValue(cells[3]) == 1) ? GameState.P1WON : GameState.P2WON;
+        winningPattern = WinPattern.ROW_TWO;
+      }
+    } else if (cells[6] != 0) {
+      if (cells[6] == cells[7] && cells[6] == cells[8]) {
+        gameState = (Character.getNumericValue(cells[6]) == 1) ? GameState.P1WON : GameState.P2WON;
+        winningPattern = WinPattern.ROW_THREE;
+      }
+      if (cells[6] == cells[4] && cells[6] == cells[2]) {
+        gameState = (Character.getNumericValue(cells[6]) == 1) ? GameState.P1WON : GameState.P2WON;
+        winningPattern = WinPattern.DIAG_TWO;
+      }
     } else {
-      for (char cell: boardArr) {
-        if (cell == '0') {
-          return GameState.ONGOING;
+      for (int cell: this.cells) {
+        if (cell == 0) {
+          gameState = GameState.ONGOING;
         }
       }
-      return GameState.TIE;
+      gameState = GameState.TIE;
     }
   }
 }

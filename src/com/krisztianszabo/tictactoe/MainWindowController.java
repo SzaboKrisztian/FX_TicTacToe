@@ -6,16 +6,16 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
@@ -24,14 +24,43 @@ import java.util.ResourceBundle;
 public class MainWindowController implements Initializable {
   private final XOGame model = XOGame.getInstance();
   @FXML private MenuItem menuUndo;
-  @FXML private GridPane gameGrid;
+  @FXML private Canvas drawArea;
   @FXML private Label scoreLabel;
   private final Image IMG_TRANSPARENT = new Image("com/krisztianszabo/tictactoe/resources/transparent.png");
   private final Image IMG_X = new Image("com/krisztianszabo/tictactoe/resources/x.png");
   private final Image IMG_O = new Image("com/krisztianszabo/tictactoe/resources/o.png");
 
   public void initialize(URL location, ResourceBundle resources) {
-    int i = 1;
+    updateInterface();
+    drawArea.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      @Override
+      public void handle(MouseEvent mouseEvent) {
+        if (model.getGameState() == GameState.ONGOING) {
+          System.out.printf("%s - %s%n", model.getGameState(), model.getWinningPattern());
+          double canvasWidth = drawArea.getWidth();
+          double canvasHeight = drawArea.getHeight();
+          int cellClicked = (int)(mouseEvent.getY() / (canvasHeight / 3)) * 3 +
+              (int)(mouseEvent.getX() / (canvasWidth / 3)) + 1;
+          if (model.makeMove(cellClicked)) {
+            updateInterface();
+            if (model.getGameState() != GameState.ONGOING) {
+              if (model.getGameState() != GameState.TIE) {
+                System.out.println(model.getGameState());
+                int winner = model.getGameState() == GameState.P1WON ? 1 : 2;
+                PlayerManager.getInstance()
+                    .getPlayer(winner).increaseScore();
+              }
+              updateInterface();
+              showGameOverAlert();
+              model.startNewGame(model.getStartingPlayer() ==
+                  1 ? 2 : 1);
+              updateInterface();
+            }
+          }
+        }
+      }
+    });
+    /*int i = 1;
     for (Node child: gameGrid.getChildren()) {
       if (child instanceof javafx.scene.image.ImageView) {
         ((ImageView) child).setPreserveRatio(true);
@@ -82,6 +111,37 @@ public class MainWindowController implements Initializable {
     }
 
     updateInterface();
+    */
+  }
+
+  private void drawSymbols(Canvas target) {
+    GraphicsContext draw = target.getGraphicsContext2D();
+    double canvasWidth = target.getWidth();
+    double canvasHeight = target.getHeight();
+    int index = 0;
+    char[] board = XOGame.getInstance().getBoardState().toCharArray();
+    for (int j = 0; j < 3; j++) {
+      for (int i = 0; i < 3; i++) {
+        double imageOriginX = i * (canvasWidth / 3);
+        double imageOriginY = j * (canvasHeight / 3);
+        double imageWidth = canvasWidth / 3;
+        double imageHeigth = canvasHeight / 3;
+        Image imageContent;
+        switch (board[index]) {
+          case '1':
+            imageContent = IMG_X;
+            break;
+          case '2':
+            imageContent = IMG_O;
+            break;
+          default:
+            imageContent = IMG_TRANSPARENT;
+            break;
+        }
+        draw.drawImage(imageContent, imageOriginX, imageOriginY, imageWidth, imageHeigth);
+        index++;
+      }
+    }
   }
 
   private void showGameOverAlert() {
@@ -129,7 +189,22 @@ public class MainWindowController implements Initializable {
 
   }
 
-  private void resetBoardImages() {
+  private void drawBackground(Canvas drawArea) {
+    double areaHeight = drawArea.getHeight();
+    double areaWidth = drawArea.getWidth();
+    GraphicsContext draw = drawArea.getGraphicsContext2D();
+    draw.setFill(Color.WHITE);
+    draw.fillRect(0, 0, areaWidth, areaHeight);
+    draw.setFill(Color.BLACK);
+    draw.setLineWidth(5);
+    double padding = 10;
+    draw.strokeLine(areaWidth / 3, padding, areaWidth / 3, areaHeight - padding);
+    draw.strokeLine((areaHeight / 3) * 2, padding, (areaWidth / 3) * 2, areaHeight - padding);
+    draw.strokeLine(padding, areaHeight / 3, areaWidth - padding, areaHeight / 3);
+    draw.strokeLine(padding, (areaHeight / 3) * 2, areaWidth - padding, (areaHeight / 3) * 2);
+  }
+
+  /*private void resetBoardImages() {
     int i = 0;
     String boardRep = model.getBoardState();
     for (Node child: gameGrid.getChildren()) {
@@ -149,7 +224,7 @@ public class MainWindowController implements Initializable {
       }
       i++;
     }
-  }
+  }*/
 
   public void undoLastMove() {
     model.undoLastMove();
@@ -164,7 +239,8 @@ public class MainWindowController implements Initializable {
 
   private void updateInterface() {
     menuUndo.setDisable(model.getBoardState().equals("000000000"));
-    resetBoardImages();
+    drawBackground(drawArea);
+    drawSymbols(drawArea);
     String text = PlayerManager.getInstance().getPlayer(1).getName() + ": " +
         PlayerManager.getInstance().getPlayer(1).getScore() + "     " +
         PlayerManager.getInstance().getPlayer(2).getName() + ": " +

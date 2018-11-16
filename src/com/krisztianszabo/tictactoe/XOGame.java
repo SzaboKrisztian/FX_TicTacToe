@@ -41,6 +41,8 @@ public class XOGame {
     return moveHistory.peek().getGameState();
   }
 
+  public Board.WinPattern getWinningPattern() { return moveHistory.peek().getWinningPattern(); }
+
   public void undoLastMove() {
     if (moveHistory.size() > 1) {
       moveHistory.pop();

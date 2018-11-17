@@ -12,22 +12,22 @@ public class XOGame {
     moveHistory.add(new Board());
   }
 
-  public static XOGame getInstance() {
+  static XOGame getInstance() {
     if (instance == null) {
       instance = new XOGame();
     }
     return instance;
   }
 
-  public String getBoardState() {
+  String getBoardState() {
     return moveHistory.peek().getBoardState();
   }
 
-  public int getCurrentPlayer() {
+  int getCurrentPlayer() {
     return moveHistory.peek().getCurrentPlayer();
   }
 
-  public boolean makeMove(int move) {
+  boolean makeMove(int move) {
     Board newPosition = moveHistory.peek().makeMove(move);
     if (newPosition == null) {
       return false;
@@ -37,29 +37,29 @@ public class XOGame {
     }
   }
 
-  public Board.GameState getGameState() {
+  Board.GameState getGameState() {
     return moveHistory.peek().getGameState();
   }
 
   public Board.WinPattern getWinningPattern() { return moveHistory.peek().getWinningPattern(); }
 
-  public void undoLastMove() {
+  void undoLastMove() {
     if (moveHistory.size() > 1) {
       moveHistory.pop();
     }
   }
 
-  public void startNewGame() {
+  void startNewGame() {
     moveHistory.clear();
     moveHistory.add(new Board());
   }
 
-  public void startNewGame(int player) {
+  void startNewGame(int player) {
     moveHistory.clear();
     moveHistory.add(new Board(player));
   }
 
-  public int getStartingPlayer() {
+  int getStartingPlayer() {
     return moveHistory.peekLast().getCurrentPlayer();
   }
 }

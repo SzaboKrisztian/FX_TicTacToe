@@ -2,7 +2,6 @@ package com.krisztianszabo.tictactoe;
 
 import com.krisztianszabo.tictactoe.Board.GameState;
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,7 +13,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -32,86 +30,30 @@ public class MainWindowController implements Initializable {
 
   public void initialize(URL location, ResourceBundle resources) {
     updateInterface();
-    drawArea.setOnMouseClicked(new EventHandler<MouseEvent>() {
-      @Override
-      public void handle(MouseEvent mouseEvent) {
-        if (model.getGameState() == GameState.ONGOING) {
-          System.out.printf("%s - %s%n", model.getGameState(), model.getWinningPattern());
-          double canvasWidth = drawArea.getWidth();
-          double canvasHeight = drawArea.getHeight();
-          int cellClicked = (int)(mouseEvent.getY() / (canvasHeight / 3)) * 3 +
-              (int)(mouseEvent.getX() / (canvasWidth / 3)) + 1;
-          if (model.makeMove(cellClicked)) {
-            updateInterface();
-            if (model.getGameState() != GameState.ONGOING) {
-              if (model.getGameState() != GameState.TIE) {
-                System.out.println(model.getGameState());
-                int winner = model.getGameState() == GameState.P1WON ? 1 : 2;
-                PlayerManager.getInstance()
-                    .getPlayer(winner).increaseScore();
-              }
-              updateInterface();
-              showGameOverAlert();
-              model.startNewGame(model.getStartingPlayer() ==
-                  1 ? 2 : 1);
-              updateInterface();
+
+    drawArea.setOnMouseClicked(mouseEvent -> {
+      if (model.getGameState() == GameState.ONGOING) {
+        double canvasWidth = drawArea.getWidth();
+        double canvasHeight = drawArea.getHeight();
+        int cellClicked = (int)(mouseEvent.getY() / (canvasHeight / 3)) * 3 +
+            (int)(mouseEvent.getX() / (canvasWidth / 3)) + 1;
+        if (model.makeMove(cellClicked)) {
+          updateInterface();
+          if (model.getGameState() != GameState.ONGOING) {
+            if (model.getGameState() != GameState.TIE) {
+              int winner = model.getGameState() == GameState.P1WON ? 1 : 2;
+              PlayerManager.getInstance()
+                  .getPlayer(winner).increaseScore();
             }
+            updateInterface();
+            showGameOverAlert();
+            model.startNewGame(model.getStartingPlayer() ==
+                1 ? 2 : 1);
+            updateInterface();
           }
         }
       }
     });
-    /*int i = 1;
-    for (Node child: gameGrid.getChildren()) {
-      if (child instanceof javafx.scene.image.ImageView) {
-        ((ImageView) child).setPreserveRatio(true);
-        ((ImageView) child).setFitHeight(100);
-        ((ImageView) child).setFitWidth(100);
-        resetBoardImages();
-        child.setOnMouseClicked(new EventHandler<MouseEvent>() {
-          private int cell;
-
-          @Override
-          public void handle(MouseEvent event) {
-            // We only handle mouse input if the game is ongoing
-            if (model.getGameState() == GameState.ONGOING) {
-              // The XOGame.makeMove(int) method returns false if the attempted move was
-              // in any way illegal and could not be, thus, performed. Hence, the board
-              // didn't change, and there's no need to take any actions.
-              if (model.makeMove(cell)) {
-                // But if he move was indeed performed, we should first change the ImagesViews to
-                // the appropriate images, to reflect the change in the game model, and then check
-                // if the game state changed, and display the appropriate alert if it so did.
-                updateInterface();
-                if (model.getGameState() != GameState.ONGOING) {
-                  if (model.getGameState() != GameState.TIE) {
-                    System.out.println(model.getGameState());
-                    int winner = model.getGameState() == GameState.P1WON ? 1 : 2;
-                    PlayerManager.getInstance()
-                        .getPlayer(winner).increaseScore();
-                  }
-                  updateInterface();
-                  showGameOverAlert();
-                  model.startNewGame(model.getStartingPlayer() ==
-                      1 ? 2 : 1);
-                  updateInterface();
-                }
-              }
-            }
-            event.consume();
-          }
-
-          private EventHandler<MouseEvent> setCell(int num) {
-            this.cell = num;
-            return this;
-          }
-        }.setCell(i));
-        child.setPickOnBounds(true);
-      }
-      i++;
-    }
-
-    updateInterface();
-    */
   }
 
   private void drawSymbols(Canvas target) {
@@ -195,7 +137,7 @@ public class MainWindowController implements Initializable {
     GraphicsContext draw = drawArea.getGraphicsContext2D();
     draw.setFill(Color.WHITE);
     draw.fillRect(0, 0, areaWidth, areaHeight);
-    draw.setFill(Color.BLACK);
+    draw.setStroke(Color.BLACK);
     draw.setLineWidth(5);
     double padding = 10;
     draw.strokeLine(areaWidth / 3, padding, areaWidth / 3, areaHeight - padding);
@@ -203,28 +145,6 @@ public class MainWindowController implements Initializable {
     draw.strokeLine(padding, areaHeight / 3, areaWidth - padding, areaHeight / 3);
     draw.strokeLine(padding, (areaHeight / 3) * 2, areaWidth - padding, (areaHeight / 3) * 2);
   }
-
-  /*private void resetBoardImages() {
-    int i = 0;
-    String boardRep = model.getBoardState();
-    for (Node child: gameGrid.getChildren()) {
-      if (child instanceof javafx.scene.image.ImageView) {
-        Image appropriateImage;
-        switch (boardRep.charAt(i)) {
-          case '1':
-            appropriateImage = IMG_X;
-            break;
-          case '2':
-            appropriateImage = IMG_O;
-            break;
-          default:
-            appropriateImage = IMG_TRANSPARENT;
-        }
-        ((ImageView) child).setImage(appropriateImage);
-      }
-      i++;
-    }
-  }*/
 
   public void undoLastMove() {
     model.undoLastMove();
@@ -241,6 +161,9 @@ public class MainWindowController implements Initializable {
     menuUndo.setDisable(model.getBoardState().equals("000000000"));
     drawBackground(drawArea);
     drawSymbols(drawArea);
+    if (model.getWinningPattern() != Board.WinPattern.NONE) {
+      drawWinLine(drawArea);
+    }
     String text = PlayerManager.getInstance().getPlayer(1).getName() + ": " +
         PlayerManager.getInstance().getPlayer(1).getScore() + "     " +
         PlayerManager.getInstance().getPlayer(2).getName() + ": " +
@@ -253,5 +176,68 @@ public class MainWindowController implements Initializable {
       }
     }
     scoreLabel.setText(text);
+  }
+
+  private void drawWinLine(Canvas drawArea) {
+    double cellWidth = drawArea.getWidth() / 3;
+    double cellHeight = drawArea.getHeight() / 3;
+    double padding = 25;
+    double lineStartX = 0, lineStartY = 0, lineEndX = 0, lineEndY = 0;
+    switch (model.getWinningPattern()) {
+      case COL_ONE:
+        lineStartX = 0.5 * cellWidth;
+        lineStartY = padding;
+        lineEndX = 0.5 * cellWidth;
+        lineEndY = drawArea.getHeight() - padding;
+        break;
+      case COL_TWO:
+        lineStartX = 1.5 * cellWidth;
+        lineStartY = padding;
+        lineEndX = 1.5 * cellWidth;
+        lineEndY = drawArea.getHeight() - padding;
+        break;
+      case COL_THREE:
+        lineStartX = 2.5 * cellWidth;
+        lineStartY = padding;
+        lineEndX = 2.5 * cellWidth;
+        lineEndY = drawArea.getHeight() - padding;
+        break;
+      case ROW_ONE:
+        lineStartX = padding;
+        lineStartY = 0.5 * cellHeight;
+        lineEndX = drawArea.getWidth() - padding;
+        lineEndY = 0.5 * cellHeight;
+        break;
+      case ROW_TWO:
+        lineStartX = padding;
+        lineStartY = 1.5 * cellHeight;
+        lineEndX = drawArea.getWidth() - padding;
+        lineEndY = 1.5 * cellHeight;
+        break;
+      case ROW_THREE:
+        lineStartX = padding;
+        lineStartY = 2.5 * cellHeight;
+        lineEndX = drawArea.getWidth() - padding;
+        lineEndY = 2.5 * cellHeight;
+        break;
+      case DIAG_ONE:
+        lineStartX = padding;
+        lineStartY = padding;
+        lineEndX = drawArea.getWidth() - padding;
+        lineEndY = drawArea.getHeight() - padding;
+        break;
+      case DIAG_TWO:
+        lineStartX = drawArea.getWidth() - padding;
+        lineStartY = padding;
+        lineEndX = padding;
+        lineEndY = drawArea.getHeight() - padding;
+        break;
+      default:
+        break;
+    }
+    GraphicsContext draw = drawArea.getGraphicsContext2D();
+    draw.setStroke(Color.RED);
+    draw.setLineWidth(5);
+    draw.strokeLine(lineStartX, lineStartY, lineEndX, lineEndY);
   }
 }

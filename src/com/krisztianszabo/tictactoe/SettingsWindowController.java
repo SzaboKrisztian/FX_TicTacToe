@@ -6,14 +6,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.scene.control.Button;
-
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class SettingsWindowController implements Initializable {
-  @FXML private Button buttonSave;
   @FXML private TextField p1name;
   @FXML private TextField p2name;
 
@@ -35,7 +32,7 @@ public class SettingsWindowController implements Initializable {
     alert.setContentText("Are you ok with this?");
 
     Optional<ButtonType> result = alert.showAndWait();
-    if (result.get() == ButtonType.OK){
+    if (result.isPresent() && result.get() == ButtonType.OK){
       PlayerManager.getInstance().getPlayer(1).setName(p1name.getText());
       PlayerManager.getInstance().getPlayer(2).setName(p2name.getText());
       PlayerManager.getInstance().resetScores();
@@ -45,6 +42,6 @@ public class SettingsWindowController implements Initializable {
   }
 
   private void closeStage() {
-    ((Stage)buttonSave.getScene().getWindow()).close();
+    ((Stage)p1name.getScene().getWindow()).close();
   }
 }

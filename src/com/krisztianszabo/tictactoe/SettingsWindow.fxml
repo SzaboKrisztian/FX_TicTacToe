@@ -3,6 +3,9 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.RadioButton?>
 <GridPane xmlns:fx="http://javafx.com/fxml" hgap="10" vgap="10"
           fx:controller="com.krisztianszabo.tictactoe.SettingsWindowController">
     <Label text="First player's name:" alignment="CENTER_RIGHT"
@@ -13,12 +16,24 @@
                GridPane.rowIndex="0" GridPane.columnIndex="1"/>
     <TextField id="p2name" fx:id="p2name"
                GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+    <CheckBox GridPane.columnSpan="2" GridPane.halignment="CENTER"
+              text="CPU Player enabled: " fx:id="CPUEnabled"
+            GridPane.rowIndex="2" onAction="#checkBoxClicked"/>
+    <fx:define>
+        <ToggleGroup fx:id="radioGroup"/>
+    </fx:define>
+    <RadioButton GridPane.columnIndex="0" text="As Player 1"
+                 disable="true" fx:id="CPU_P1" GridPane.halignment="CENTER"
+                toggleGroup="$radioGroup" GridPane.rowIndex="3" onAction="#radioButtonsClicked"/>
+    <RadioButton GridPane.columnIndex="1" text="As Player 2" selected="true"
+                 disable="true" fx:id="CPU_P2" GridPane.halignment="CENTER"
+                toggleGroup="$radioGroup" GridPane.rowIndex="3" onAction="#radioButtonsClicked"/>
     <Button text="Cancel" alignment="CENTER"
             onAction="#cancelAndClose"
-            GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            GridPane.rowIndex="4" GridPane.columnIndex="0"/>
     <Button text="Save &amp; Close" alignment="CENTER"
             onAction="#saveAndClose"
-            GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+            GridPane.rowIndex="4" GridPane.columnIndex="1"/>
     <columnConstraints>
         <ColumnConstraints hgrow="ALWAYS" halignment="RIGHT"/>
         <ColumnConstraints hgrow="ALWAYS" halignment="LEFT"/>

@@ -10,8 +10,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/ComputerPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/HumanPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/HumanPlayer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/MainWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/PlayerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/PlayerManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/SettingsWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/SettingsWindow.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/SettingsWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/SettingsWindowController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/XOGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/XOGame.java" afterDir="false" />
@@ -96,29 +101,29 @@
         <counts>
           <entry key="css" value="153" />
           <entry key="dummy" value="10" />
-          <entry key="fxml" value="1131" />
-          <entry key="java" value="11239" />
+          <entry key="fxml" value="1481" />
+          <entry key="java" value="13618" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="153" />
-          <entry key="JAVA" value="11239" />
+          <entry key="JAVA" value="13618" />
           <entry key="PLAIN_TEXT" value="10" />
-          <entry key="XML" value="1131" />
+          <entry key="XML" value="1481" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="2" />
           <entry key="fxml" value="13" />
-          <entry key="java" value="37" />
+          <entry key="java" value="41" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="2" />
-          <entry key="JAVA" value="37" />
+          <entry key="JAVA" value="41" />
           <entry key="XML" value="13" />
         </counts>
       </usages-collector>
@@ -132,8 +137,58 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/SettingsWindowController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
+            <state relative-caret-position="17">
+              <caret line="6" column="19" lean-forward="true" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
+              <folding>
+                <element signature="e#1514#1515#0" expanded="true" />
+                <element signature="e#1570#1571#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/ComputerPlayer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="25" column="19" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
+              <folding>
+                <element signature="e#167#168#0" expanded="true" />
+                <element signature="e#187#188#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/Player.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="33" column="34" selection-start-line="33" selection-start-column="34" selection-end-line="33" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/HumanPlayer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+              <folding>
+                <element signature="e#170#171#0" expanded="true" />
+                <element signature="e#191#192#0" expanded="true" />
+                <element signature="e#228#229#0" expanded="true" />
+                <element signature="e#250#251#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/PlayerManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="27" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -141,8 +196,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/Board.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1768">
-              <caret line="108" column="9" lean-forward="true" selection-start-line="108" selection-start-column="9" selection-end-line="108" selection-end-column="9" />
+            <state relative-caret-position="191">
+              <caret line="101" column="54" lean-forward="true" selection-start-line="101" selection-start-column="54" selection-end-line="101" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#473#474#0" expanded="true" />
@@ -166,13 +221,14 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/MainWindowController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="139" column="19" selection-start-line="139" selection-start-column="19" selection-end-line="139" selection-end-column="19" />
+            <state relative-caret-position="310">
+              <caret line="57" column="32" selection-start-line="57" selection-start-column="32" selection-end-line="57" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#drawSymbols#0;class#MainWindowController#0" />
                 <element signature="method#showGameOverAlert#0;class#MainWindowController#0" />
-                <element signature="method#showSettingsScene#0;class#MainWindowController#0" />
+                <element signature="e#4353#4354#0" expanded="true" />
+                <element signature="e#4378#4379#0" expanded="true" />
                 <element signature="method#undoLastMove#0;class#MainWindowController#0" />
                 <element signature="method#startNewGame#0;class#MainWindowController#0" />
               </folding>
@@ -183,10 +239,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/XOGame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="65" lean-forward="true" selection-start-line="65" selection-end-line="65" />
+            <state relative-caret-position="51">
+              <caret line="3" column="28" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#430#431#0" expanded="true" />
+                <element signature="e#464#465#0" expanded="true" />
                 <element signature="e#432#433#0" expanded="true" />
                 <element signature="e#483#484#0" expanded="true" />
               </folding>
@@ -197,23 +255,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/SettingsWindow.fxml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="60" lean-forward="true" selection-start-line="20" selection-start-column="60" selection-end-line="20" selection-end-column="60" />
-            </state>
-          </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/SettingsWindow.css">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/MainWindow.fxml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="56" selection-start-line="22" selection-start-column="56" selection-end-line="22" selection-end-column="56" />
+            <state relative-caret-position="208">
+              <caret line="26" column="89" selection-start-line="26" selection-start-column="89" selection-end-line="26" selection-end-column="89" />
             </state>
           </provider>
           <provider editor-type-id="JavaFX-Scene-Builder" />
@@ -248,17 +291,18 @@
         <option value="$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/sample.fxml" />
         <option value="$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/Interface.fxml" />
         <option value="$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/Controller.java" />
-        <option value="$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/HumanPlayer.java" />
         <option value="$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/TwoPlayerManager.java" />
-        <option value="$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/Player.java" />
-        <option value="$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/PlayerManager.java" />
         <option value="$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/MainWindow.css" />
         <option value="$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/Main.java" />
         <option value="$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/MainWindow.fxml" />
-        <option value="$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/SettingsWindowController.java" />
         <option value="$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/SettingsWindow.fxml" />
+        <option value="$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/SettingsWindowController.java" />
         <option value="$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/Board.java" />
         <option value="$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/XOGame.java" />
+        <option value="$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/PlayerManager.java" />
+        <option value="$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/Player.java" />
+        <option value="$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/HumanPlayer.java" />
+        <option value="$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/ComputerPlayer.java" />
         <option value="$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/MainWindowController.java" />
       </list>
     </option>
@@ -368,6 +412,9 @@
     <property name="recentsLimit" value="5" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.krisztianszabo.tictactoe" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\szabo\Dropbox\IdeaProjects\FXTicTacToe\src\com\krisztianszabo\tictactoe" />
     </key>
@@ -485,7 +532,7 @@
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.13360325" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.13360325" />
       <window_info id="Structure" order="1" weight="0.24939272" />
       <window_info id="Favorites" order="2" weight="0.32955465" />
       <window_info id="Designer" order="3" />
@@ -494,7 +541,7 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.34163702" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.34163702" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -520,7 +567,7 @@
       <window_info anchor="right" id="Theme Preview" order="10" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.14089069" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.13360325" />
       <window_info id="Structure" order="1" weight="0.24939272" />
       <window_info id="Favorites" order="2" weight="0.32955465" />
       <window_info id="Designer" order="3" />
@@ -529,7 +576,7 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3772242" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.34163702" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -575,27 +622,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/TwoPlayerManager.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="24" column="19" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/HumanPlayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="37" selection-start-line="2" selection-start-column="37" selection-end-line="2" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/PlayerManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="23" column="16" lean-forward="true" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/SettingsWindow.css">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -630,35 +656,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/SettingsWindow.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="60" lean-forward="true" selection-start-line="20" selection-start-column="60" selection-end-line="20" selection-end-column="60" />
+        <state relative-caret-position="208">
+          <caret line="26" column="89" selection-start-line="26" selection-start-column="89" selection-end-line="26" selection-end-column="89" />
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/XOGame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="65" lean-forward="true" selection-start-line="65" selection-end-line="65" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#432#433#0" expanded="true" />
-            <element signature="e#483#484#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/SettingsWindowController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/Board.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1768">
-          <caret line="108" column="9" lean-forward="true" selection-start-line="108" selection-start-column="9" selection-end-line="108" selection-end-column="9" />
+        <state relative-caret-position="191">
+          <caret line="101" column="54" lean-forward="true" selection-start-line="101" selection-start-column="54" selection-end-line="101" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#473#474#0" expanded="true" />
@@ -669,15 +676,79 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/XOGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="28" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#430#431#0" expanded="true" />
+            <element signature="e#464#465#0" expanded="true" />
+            <element signature="e#432#433#0" expanded="true" />
+            <element signature="e#483#484#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/SettingsWindowController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="6" column="19" lean-forward="true" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
+          <folding>
+            <element signature="e#1514#1515#0" expanded="true" />
+            <element signature="e#1570#1571#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/PlayerManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="27" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="33" column="34" selection-start-line="33" selection-start-column="34" selection-end-line="33" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/HumanPlayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+          <folding>
+            <element signature="e#170#171#0" expanded="true" />
+            <element signature="e#191#192#0" expanded="true" />
+            <element signature="e#228#229#0" expanded="true" />
+            <element signature="e#250#251#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/ComputerPlayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="25" column="19" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
+          <folding>
+            <element signature="e#167#168#0" expanded="true" />
+            <element signature="e#187#188#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/krisztianszabo/tictactoe/MainWindowController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="139" column="19" selection-start-line="139" selection-start-column="19" selection-end-line="139" selection-end-column="19" />
+        <state relative-caret-position="310">
+          <caret line="57" column="32" selection-start-line="57" selection-start-column="32" selection-end-line="57" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#drawSymbols#0;class#MainWindowController#0" />
             <element signature="method#showGameOverAlert#0;class#MainWindowController#0" />
-            <element signature="method#showSettingsScene#0;class#MainWindowController#0" />
+            <element signature="e#4353#4354#0" expanded="true" />
+            <element signature="e#4378#4379#0" expanded="true" />
             <element signature="method#undoLastMove#0;class#MainWindowController#0" />
             <element signature="method#startNewGame#0;class#MainWindowController#0" />
           </folding>

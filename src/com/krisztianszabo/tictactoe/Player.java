@@ -30,4 +30,6 @@ public abstract class Player {
   }
 
   public abstract int getMove();
+
+  public abstract boolean isCPU();
 }

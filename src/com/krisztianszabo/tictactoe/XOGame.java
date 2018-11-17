@@ -19,6 +19,10 @@ public class XOGame {
     return instance;
   }
 
+  Board getBoardCopy() {
+    return moveHistory.peek().clone();
+  }
+
   String getBoardState() {
     return moveHistory.peek().getBoardState();
   }

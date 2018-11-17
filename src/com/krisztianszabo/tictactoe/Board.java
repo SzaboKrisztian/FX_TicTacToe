@@ -1,5 +1,6 @@
 package com.krisztianszabo.tictactoe;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -95,6 +96,26 @@ public class Board implements Cloneable{
 
   int getCurrentPlayer() {
     return this.currentPlayer;
+  }
+
+  int[] getLegalMoves() {
+    ArrayList<Integer> legalMoves = new ArrayList<>();
+
+    for (int i = 0; i < cells.length; i++) {
+      if (cells[i] == 0) {
+        legalMoves.add(i + 1);
+      }
+    }
+
+    if (legalMoves.isEmpty()) {
+      return null;
+    } else {
+      int[] result = new int[legalMoves.size()];
+      for (int i = 0; i < result.length; i++) {
+        result [i] = legalMoves.get(i);
+      }
+      return result;
+    }
   }
 
   private void checkWinCondition() {

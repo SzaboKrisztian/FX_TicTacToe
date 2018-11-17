@@ -50,10 +50,23 @@ public class MainWindowController implements Initializable {
             model.startNewGame(model.getStartingPlayer() ==
                 1 ? 2 : 1);
             updateInterface();
+          } else {
+            Player currentPlayer = PlayerManager.getInstance().
+                getPlayer(XOGame.getInstance().getCurrentPlayer());
+            if (currentPlayer.isCPU()) {
+              model.makeMove(currentPlayer.getMove());
+              updateInterface();
+            }
           }
         }
       }
     });
+
+    Player currentPlayer = PlayerManager.getInstance().getPlayer(XOGame.getInstance().getCurrentPlayer());
+    if (currentPlayer.isCPU()) {
+      model.makeMove(currentPlayer.getMove());
+      updateInterface();
+    }
   }
 
   private void drawSymbols(Canvas target) {
@@ -120,7 +133,7 @@ public class MainWindowController implements Initializable {
     Parent root = loader.load();
 
     stage.setTitle("Game Settings");
-    Scene scene = new Scene(root, 300, 120);
+    Scene scene = new Scene(root, 300, 160);
     scene.getStylesheets().add(getClass().getResource("SettingsWindow.css").toExternalForm());
     stage.setScene(scene);
     stage.getIcons().add(new Image("com/krisztianszabo/tictactoe/resources/icon.png"));

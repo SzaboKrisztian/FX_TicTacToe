@@ -1,6 +1,6 @@
 package com.krisztianszabo.tictactoe;
 
-public class PlayerManager {
+class PlayerManager {
   private static PlayerManager instance;
   private Player[] players;
 
@@ -10,19 +10,37 @@ public class PlayerManager {
     players[1] = new HumanPlayer("Player 2");
   }
 
-  public static PlayerManager getInstance() {
+  static PlayerManager getInstance() {
     if (instance == null) {
       instance = new PlayerManager();
     }
     return instance;
   }
 
-  public Player getPlayer(int number) {
+  Player getPlayer(int number) {
     return players[number - 1];
   }
 
-  public void resetScores() {
+  void setPlayer(int number, Player player) {
+    if (number == 1 || number == 2) {
+      players[number - 1] = player;
+    }
+  }
+
+  void resetScores() {
     players[0].resetScore();
     players[1].resetScore();
+  }
+
+  boolean isCPUPlaying() {
+    return players[0] instanceof ComputerPlayer || players[1] instanceof ComputerPlayer;
+  }
+
+  int getCPUPlayerNum() {
+    if (isCPUPlaying()) {
+      return players[0] instanceof ComputerPlayer ? 1 : 2;
+    } else {
+      return 0;
+    }
   }
 }
